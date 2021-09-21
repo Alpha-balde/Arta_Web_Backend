@@ -5,6 +5,7 @@ import com.ibmap.dental.application.typology.Gender;
 import com.ibmap.dental.application.typology.MemberStatus;
 import com.ibmap.dental.domaine.BasicEntity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,12 +15,12 @@ import java.util.Date;
 @Table(name = "member")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @EqualsAndHashCode (callSuper = true)
 @ToString(callSuper = true)
 public class Member extends BasicEntity {
+ /*
  @Column(name = "member_id", nullable = false,unique = true)
  private String memberId;
  @Column(name = "last_name", nullable = false)
@@ -47,6 +48,8 @@ public class Member extends BasicEntity {
  private MemberStatus status;
  @Column(name = "registration_date", nullable = false)
  private LocalDate registrationDate;
+
+  */
 
  // add picture url; ex: C\\:UsersAlBa1169\Pictures\Screenshots\2020-11-26 12_57_04-.png
 }

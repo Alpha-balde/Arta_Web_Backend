@@ -2,6 +2,7 @@ package com.ibmap.dental.domaine.entities;
 
 import com.ibmap.dental.domaine.BasicEntity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,15 +14,17 @@ import java.time.LocalDate;
 @Table(name = "family")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @EqualsAndHashCode (callSuper = true)
 @ToString(callSuper = true)
 public class Family extends BasicEntity {
+    /*
     @Column(name = "family_id", nullable = false,unique = true)
     private String familyId;
     @Column(name = "head_person", nullable = false)
     @OneToOne(mappedBy = "id")
     private Member headPerson;
+
+     */
 }

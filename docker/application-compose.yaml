@@ -1,0 +1,11 @@
+version: '2.1'
+services:
+  application:
+    container_name: arta-backend
+    image: app/arta-backend:latest
+    command: >
+      java -jar arta-web.jar
+    ports:
+      - ${PORT:-8080}:8080
+    depends_on:
+      - arta-backend-postgres

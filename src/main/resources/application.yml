@@ -1,0 +1,34 @@
+spring:
+    sql:
+      init:
+          platform: postgresql
+    datasource:
+        url: jdbc:postgresql://localhost:5432/ARTA_BACKEND
+        username: root
+        password: root
+    jpa:
+        hibernate:
+            ddl-auto: create
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+    devtools:
+      restart:
+          enabled: true
+logging:
+    file:
+        name: logs/application-debug.log
+    pattern:
+        console: '[%-5p] %d | %c{1}:%L | %m%n'
+        file: '[%-5p] %d | %c{1}:%L | %m%n'
+    level:
+        liquibase: INFO
+        org.springframework: ERROR
+        org.springframework.boot: ERROR
+        org.springframework.boot.autoconfigure: ERROR
+        org.springframework.web: ERROR
+        org.springframework.web.servlet.DispatcherServlet: ERROR
+        org.springframework.security: ERROR
+        org.springframework.security.web.FilterChainProxy: ERROR
+        org.hibernate.SQL: ERROR
+        org.hibernate.type.descriptor.sql: ERROR
+        com.ibmap.dental: DEBUG
