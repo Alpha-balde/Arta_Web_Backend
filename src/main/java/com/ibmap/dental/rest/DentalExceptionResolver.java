@@ -39,6 +39,7 @@ public class DentalExceptionResolver extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(DentalException.class)
     public ResponseEntity<ErrorDetails> handle(DentalException ex, WebRequest request) {
+        logException(ex);
         ErrorDetails errorDetails = getErrorDetails(ex, ex.getStatus(), (ServletWebRequest) request);
         return new ResponseEntity<>(errorDetails, ex.getStatus());
     }
@@ -51,6 +52,7 @@ public class DentalExceptionResolver extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorDetails> handle(Exception ex, WebRequest request) {
+        logException(ex);
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         ErrorDetails errorDetails = getErrorDetails(ex, httpStatus, (ServletWebRequest) request);
         return new ResponseEntity<>(errorDetails, httpStatus);
@@ -67,7 +69,7 @@ public class DentalExceptionResolver extends ResponseEntityExceptionHandler {
                                                                   HttpHeaders headers,
                                                                   HttpStatus status,
                                                                   WebRequest request) {
-
+        logException(ex);
         ErrorDetails errorDetails = getErrorDetails(ex, status, (ServletWebRequest) request);
 
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
@@ -92,5 +94,10 @@ public class DentalExceptionResolver extends ResponseEntityExceptionHandler {
                 .path(requestPath)
                 .build();
         return errorDetails;
+    }
+
+    private void logException(Exception ex) {
+        String handleErrorMessage = "An error happened : ";
+        log.error(handleErrorMessage, ex);
     }
 }
