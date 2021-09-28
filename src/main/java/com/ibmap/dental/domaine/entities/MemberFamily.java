@@ -16,11 +16,12 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @SuperBuilder
 @EqualsAndHashCode (callSuper = true)
 @ToString(callSuper = true)
 public class MemberFamily extends BasicEntity {
-    /*
+
     @OneToMany(mappedBy = "memberFamily")
     private List<Member> members;
     @OneToMany(mappedBy = "memberFamily")
@@ -28,5 +29,5 @@ public class MemberFamily extends BasicEntity {
     @Column(name = "comments")
     private String comments;
 
-     */
+
 }

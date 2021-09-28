@@ -12,15 +12,15 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@Table(name = "member")
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @SuperBuilder
 @EqualsAndHashCode (callSuper = true)
 @ToString(callSuper = true)
 public class Member extends BasicEntity {
- /*
+
  @Column(name = "member_id", nullable = false,unique = true)
  private String memberId;
  @Column(name = "last_name", nullable = false)
@@ -48,8 +48,7 @@ public class Member extends BasicEntity {
  private MemberStatus status;
  @Column(name = "registration_date", nullable = false)
  private LocalDate registrationDate;
+ @Column(name =  "pictureURL", nullable = true)
+ private String pictureURL;
 
-  */
-
- // add picture url; ex: C\\:UsersAlBa1169\Pictures\Screenshots\2020-11-26 12_57_04-.png
 }

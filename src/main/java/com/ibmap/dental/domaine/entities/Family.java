@@ -15,16 +15,17 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @SuperBuilder
 @EqualsAndHashCode (callSuper = true)
 @ToString(callSuper = true)
 public class Family extends BasicEntity {
-    /*
+
     @Column(name = "family_id", nullable = false,unique = true)
     private String familyId;
     @Column(name = "head_person", nullable = false)
     @OneToOne(mappedBy = "id")
     private Member headPerson;
 
-     */
+
 }

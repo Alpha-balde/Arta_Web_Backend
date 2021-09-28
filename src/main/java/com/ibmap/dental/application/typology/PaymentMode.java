@@ -1,6 +1,6 @@
 package com.ibmap.dental.application.typology;
 
-public enum CivilStatus {
-    SINGLE,
-    MARIED
+public enum PaymentMode {
+    CASH,
+    VIREMENT
 }
