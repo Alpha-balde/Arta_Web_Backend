@@ -35,6 +35,6 @@ public class Payment extends BasicEntity {
     @Column(name = "payment_amount", nullable = false)
     private double payment_amount;
 
-    @Column(name = "comment", nullable = true, columnDefinition = "TEXT")
+    @Column(name = "comment", columnDefinition = "TEXT")
     private String comment;
 }
