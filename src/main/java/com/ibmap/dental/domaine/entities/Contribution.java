@@ -19,7 +19,7 @@ import java.time.LocalDate;
 @ToString(callSuper = true)
 public class Contribution extends BasicEntity {
 
-    @OneToOne(targetEntity = Member.class)
+    //@ManyToOne(targetEntity = Member.class)
     @Column(name = "member_id",nullable = false)
     private long memberID;
 
@@ -30,14 +30,14 @@ public class Contribution extends BasicEntity {
     @Enumerated(EnumType.ORDINAL)
     private Month contributionMonth;
 
-    @OneToOne(targetEntity = Metadata.class)
+    //@OneToOne(targetEntity = Metadata.class)
     @Column(name = "metadata_id",nullable = false)
     private Long metadataID;
 
     @Column(name = "payment_date", nullable = false)
     private LocalDate paymentDate;
 
-    @OneToOne(targetEntity = Payment.class)
+    //@OneToMany(targetEntity = Payment.class)
     @Column(name = "payment_id")
     private Long paymentID;
 }

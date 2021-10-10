@@ -25,11 +25,11 @@ public class Insurance extends BasicEntity {
 
     @Column(name = "payment_date", nullable = false)
     private LocalDate paymentDate;
-    @OneToOne(targetEntity = Metadata.class)
+    //@OneToOne(targetEntity = Metadata.class)
     @Column(name = "metadata_id",nullable = false)
     private Long metadataID;
 
-    @OneToOne(targetEntity = Payment.class)
+    //@OneToOne(targetEntity = Payment.class)
     @Column(name = "payment_id")
     private Long paymentID;
 

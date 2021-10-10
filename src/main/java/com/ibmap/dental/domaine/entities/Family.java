@@ -23,9 +23,9 @@ public class Family extends BasicEntity {
 
     @Column(name = "family_id", nullable = false,unique = true)
     private String familyId;
-    @Column(name = "head_person", nullable = false)
-    @OneToOne(mappedBy = "id")
-    private Member headPerson;
+    //@Column(name = "head_person", nullable = false)
+    //@OneToOne(mappedBy = "id")
+    //private Member headPerson;
 
 
 }

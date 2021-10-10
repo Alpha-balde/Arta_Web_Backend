@@ -8,7 +8,7 @@ spring:
         password: root
     jpa:
         hibernate:
-            ddl-auto: create
+            ddl-auto: update
         database-platform: org.hibernate.dialect.PostgreSQLDialect
     mvc:
         throw-exception-if-no-handler-found: true
