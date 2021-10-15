@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Table(name = "memberFamily")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,10 +22,10 @@ import java.util.List;
 @ToString(callSuper = true)
 public class MemberFamily extends BasicEntity {
 
-    //@OneToMany(mappedBy = "memberFamily")
-    //private List<Member> members;
-    //@OneToMany(mappedBy = "memberFamily")
-    //private List<Family> families;
+    @OneToMany(mappedBy = "memberFamily")
+    private List<Member> members;
+    @OneToMany(mappedBy = "memberFamily")
+    private List<Family> families;
     @Column(name = "comments")
     private String comments;
 

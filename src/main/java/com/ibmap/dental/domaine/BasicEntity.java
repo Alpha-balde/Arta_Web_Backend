@@ -5,7 +5,6 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.Objects;
 
 @Data
 @SuperBuilder
@@ -32,12 +31,8 @@ public class BasicEntity {
     @PreUpdate
     void onPrePersistOrUpdate() {
         modifiedOn = Instant.now();
-        if (Objects.isNull(createdOn)) {
+        if (createdOn == null) {
             createdOn = modifiedOn;
-        }
-
-        if(Objects.isNull(businessKey)) {
-            businessKey = BusinessKeyGenerator.generateBusinessKey(this.getClass());
         }
     }
 }

@@ -21,8 +21,8 @@ import java.util.Date;
 @ToString(callSuper = true)
 public class Member extends BasicEntity {
 
- //@Column(name = "member_id", nullable = false,unique = true)
- // private String memberId;
+ @Column(name = "member_id", nullable = false,unique = true)
+ private String memberId;
  @Column(name = "last_name", nullable = false)
  private String lastName;
  @Column(name = "first_name", nullable = false)

@@ -6,20 +6,23 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
-@Entity()
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
+
 public class MemberHistory extends BasicEntity {
-    // @Column(name = "member_id",nullable = false)
-    //@ManyToOne
-    //private Member member;
+    @Column(name = "member_id",nullable = false)
+    @ManyToOne
+    private Member memberID;
     @Column(name = "column_name", nullable = false)
     private String columnName;
     @Column(name = "modification_date",nullable = false)
