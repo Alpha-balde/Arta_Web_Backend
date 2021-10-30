@@ -6,11 +6,10 @@ import com.ibmap.dental.domaine.BasicEntity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -37,4 +36,11 @@ public class Payment extends BasicEntity {
 
     @Column(name = "comment", columnDefinition = "TEXT")
     private String comment;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Insurance> insurance = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Contribution> contribution = new ArrayList<>();
+
 }

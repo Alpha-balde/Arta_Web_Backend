@@ -9,7 +9,9 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -50,5 +52,15 @@ public class Member extends BasicEntity {
  private LocalDate registrationDate;
  @Column(name =  "pictureURL", nullable = true)
  private String pictureURL;
+
+ @OneToMany(cascade = CascadeType.PERSIST)
+ private List<Insurance> insurance = new ArrayList<>();
+
+ @OneToMany(cascade = CascadeType.PERSIST)
+ private List<Contribution> contribution = new ArrayList<>();
+
+ @OneToOne(fetch = FetchType.LAZY)
+ @JoinColumn(name = "head_person_id")
+ private Family family;
 
 }

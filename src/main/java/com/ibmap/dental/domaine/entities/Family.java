@@ -4,11 +4,10 @@ import com.ibmap.dental.domaine.BasicEntity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "family")
@@ -21,11 +20,17 @@ import java.time.LocalDate;
 @ToString(callSuper = true)
 public class Family extends BasicEntity {
 
-    @Column(name = "family_id", nullable = false,unique = true)
-    private String familyId;
-    @Column(name = "head_person", nullable = false)
-    @OneToOne(mappedBy = "id")
+    @OneToOne(
+            mappedBy = "family",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private Member headPerson;
 
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Member> FamilyMember = new ArrayList<>();
 
+    @Column(name = "comments", columnDefinition = "TEXT")
+    private String comments;
 }
