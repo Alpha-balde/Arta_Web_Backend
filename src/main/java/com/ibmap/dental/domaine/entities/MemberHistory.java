@@ -4,10 +4,7 @@ import com.ibmap.dental.domaine.BasicEntity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -20,9 +17,9 @@ import java.time.LocalDate;
 @SuperBuilder
 
 public class MemberHistory extends BasicEntity {
-    @Column(name = "member_id",nullable = false)
     @ManyToOne
-    private Member memberID;
+    @JoinColumn(name = "member_id", foreignKey = @ForeignKey(name = "MEMBER_MEMBER_HISTORY_FK"))
+    private Member member;
     @Column(name = "column_name", nullable = false)
     private String columnName;
     @Column(name = "modification_date",nullable = false)
