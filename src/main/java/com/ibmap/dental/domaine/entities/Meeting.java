@@ -5,8 +5,11 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -27,10 +30,9 @@ public class Meeting extends BasicEntity {
     private String location;
     @Column(name = "agenda")
     private String agenda;
-    @Column(name = "creation_date")
-    private LocalDate creationDate;
     @Column(name = "attendees_list")
-    private String attendeesList;
+    @ElementCollection
+    private List<String> attendeesList = new ArrayList<>();
     @Column(name = "statement_meeting", columnDefinition = "TEXT")
     private String statementMeeting;
 
