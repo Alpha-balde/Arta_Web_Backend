@@ -4,6 +4,7 @@ import com.ibmap.dental.domaine.entities.Meeting;
 import com.ibmap.dental.rest.frontdto.Converter;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 @Component
 public class MeetingConverter implements Converter <Meeting,MeetingFrontDto> {
@@ -17,7 +18,7 @@ public class MeetingConverter implements Converter <Meeting,MeetingFrontDto> {
                 .endMeeting(frontDto.getEndMeeting())
                 .location(frontDto.getLocation())
                 .agenda(frontDto.getAgenda())
-                .attendeesList(frontDto.getAttendeesList().stream().collect(Collectors.toList()))// to be tested
+                .attendeesList(new ArrayList<>(frontDto.getAttendeesList()))// to be tested
                 .statementMeeting(frontDto.getStatementMeeting())
                 .build();
     }
@@ -32,7 +33,7 @@ public class MeetingConverter implements Converter <Meeting,MeetingFrontDto> {
                 .endMeeting(entity.getEndMeeting())
                 .location(entity.getLocation())
                 .agenda(entity.getAgenda())
-                .attendeesList(entity.getAttendeesList().stream().collect(Collectors.toList()))// to be tested
+                .attendeesList(new ArrayList<>(entity.getAttendeesList()))// to be tested
                 .statementMeeting(entity.getStatementMeeting())
                 .build();
     }

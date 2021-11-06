@@ -1,7 +1,6 @@
 package com.ibmap.dental.rest.meeting;
 
-import com.ibmap.dental.application.service.IMeetingService;
-import com.ibmap.dental.application.service.impl.MeetingServiceImpl;
+import com.ibmap.dental.application.services.IMeetingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 

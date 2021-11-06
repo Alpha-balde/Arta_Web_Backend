@@ -21,7 +21,7 @@ public class Expenses extends BasicEntity {
     private double amount;
     @Column(name = "amount_date", nullable = false)
     private LocalDate amountDate;
-    @Column(name = "reason")
+    @Column(name = "reason", nullable = false, length = 20)
     private String reason;
     @Column(name = "comment")
     private String comment;
