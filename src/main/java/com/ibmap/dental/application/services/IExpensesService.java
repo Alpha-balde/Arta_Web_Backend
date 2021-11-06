@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IExpensesService {
 
-    public void  addNewExpense(Expenses expenses);
+    public Expenses  addNewExpense(Expenses expenses);
     public List<Expenses> getExpensesByReason(String reason);
     public List<Expenses> getExpensesByDate(LocalDate date);
     public List<Expenses> getExpensesByDateBetween(LocalDate minDate,LocalDate maxDate);

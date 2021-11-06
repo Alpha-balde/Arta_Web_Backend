@@ -22,8 +22,9 @@ public class ExpensesServiceImpl implements IExpensesService {
     }
 
     @Override
-    public void addNewExpense( Expenses expenses) {
-        expensesRepository.save(expenses);
+    public Expenses addNewExpense( Expenses expenses) {
+        Expenses ex = expensesRepository.save(expenses);
+        return ex;
     }
 
     @Override
@@ -48,7 +49,7 @@ public class ExpensesServiceImpl implements IExpensesService {
 
     @Override
     public List<Expenses> getExpensesByDateAfterDesc(LocalDate date) {
-        return expensesRepository.getExpensesByAmountDateAfterOOrderByAmountDateDesc(date);
+        return expensesRepository.getExpensesByAmountDateAfterOrderByAmountDateDesc(date);
     }
 
     @Override

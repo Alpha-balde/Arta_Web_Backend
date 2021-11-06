@@ -25,13 +25,14 @@ public class ExpensesRestController {
         this.iExpensesService = iExpensesService;
         this.expensesConverter = expensesConverter;
     }
+
     @PostMapping("/new")
-    public void addNewExpenses(@RequestBody @Valid ExpensesFrontDto expensesFrontDto){
+    public Expenses addNewExpenses(@RequestBody @Valid ExpensesFrontDto expensesFrontDto){
         Expenses expenses= expensesConverter.toEntity(expensesFrontDto);
-        iExpensesService.addNewExpense(expenses);
+        return iExpensesService.addNewExpense(expenses);
     }
     @GetMapping("/{id}")
-    public ExpensesFrontDto getExpensesById(@RequestParam Long id){
+    public ExpensesFrontDto getExpensesById(@PathVariable Long id){
         try {
             Expenses expenses = iExpensesService.getExpensesById(id);
             return expensesConverter.toFrontDto(expenses);
@@ -41,11 +42,11 @@ public class ExpensesRestController {
         return null;
     }
     @PutMapping("/update")
-    public ExpensesFrontDto updateExpenses(ExpensesFrontDto expensesFrontDto){
+    public ExpensesFrontDto updateExpenses(@RequestBody ExpensesFrontDto expensesFrontDto){
         try {
             Expenses expenses = expensesConverter.toEntity(expensesFrontDto);
             expenses = iExpensesService.updateExpense(expenses);
-            expensesConverter.toFrontDto(expenses);
+            return expensesConverter.toFrontDto(expenses);
         } catch (NotFoundExpensesException e) {
             e.printStackTrace();
         }

@@ -13,7 +13,7 @@ public interface ExpensesRepository extends JpaRepository<Expenses,Long> {
     public List<Expenses> getExpensesByReason(String reason);
     public Expenses getExpensesById( Long id);
     public List<Expenses> getExpensesByAmountDateBetween(LocalDate minDate, LocalDate maxDate);
-    public List<Expenses> getExpensesByAmountDateAfterOOrderByAmountDateDesc(LocalDate  date);
+    public List<Expenses> getExpensesByAmountDateAfterOrderByAmountDateDesc(LocalDate  date);
     public List<Expenses> getExpensesByAmountDateBefore(LocalDate date);
     public List<Expenses> getExpensesByAmountDate(LocalDate date);
 }

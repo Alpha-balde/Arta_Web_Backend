@@ -9,6 +9,7 @@ public class ExpensesConverter implements Converter<Expenses,ExpensesFrontDto> {
     @Override
     public Expenses toEntity(ExpensesFrontDto frontDto) {
         return Expenses.builder()
+                .id(frontDto.getId())
                 .businessKey(frontDto.getBusinessKey())
                 .createdOn(frontDto.getCreatedOn())
                 .amount(frontDto.getAmount())
