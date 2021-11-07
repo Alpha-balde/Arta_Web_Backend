@@ -6,7 +6,7 @@ import com.ibmap.dental.domaine.entities.Expenses;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface IExpensesService {
+public interface ExpensesService {
 
     public Expenses  addNewExpense(Expenses expenses);
     public List<Expenses> getExpensesByReason(String reason);

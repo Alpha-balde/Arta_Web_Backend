@@ -36,4 +36,15 @@ public class Meeting extends BasicEntity {
     @Column(name = "statement_meeting", columnDefinition = "TEXT")
     private String statementMeeting;
 
+    public Meeting update(Meeting meeting) {
+        this.title = meeting.title;
+        this.startMeeting = meeting.startMeeting;
+        this.endMeeting = meeting.endMeeting;
+        this.location = meeting.location;
+        this.agenda = meeting.agenda;
+        this.attendeesList = new ArrayList<>(meeting.getAttendeesList());
+        this.statementMeeting = meeting.statementMeeting;
+        return this;
+    }
+
 }

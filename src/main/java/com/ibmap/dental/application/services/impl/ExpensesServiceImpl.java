@@ -1,7 +1,8 @@
 package com.ibmap.dental.application.services.impl;
 
 import com.ibmap.dental.application.exception.NotFoundExpensesException;
-import com.ibmap.dental.application.services.IExpensesService;
+import com.ibmap.dental.application.exception.custom.EntityNotFoundException;
+import com.ibmap.dental.application.services.ExpensesService;
 import com.ibmap.dental.domaine.entities.Expenses;
 import com.ibmap.dental.repositories.ExpensesRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-public class ExpensesServiceImpl implements IExpensesService {
+public class ExpensesServiceImpl implements ExpensesService {
 
     private ExpensesRepository expensesRepository;
 
@@ -65,7 +66,7 @@ public class ExpensesServiceImpl implements IExpensesService {
     public Expenses updateExpense(Expenses expenses) throws NotFoundExpensesException {
         Optional<Expenses> expensesOptional= Optional.ofNullable(expensesRepository.getExpensesById(expenses.getId()));
         if(!expensesOptional.isPresent()){
-            throw new NotFoundExpensesException("Expenses not found"+expenses.toString());
+            throw new EntityNotFoundException("Expenses not found"+expenses.toString());
         }
         return expensesRepository.save(expenses);
     }

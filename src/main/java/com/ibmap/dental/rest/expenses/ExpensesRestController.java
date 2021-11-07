@@ -1,10 +1,8 @@
 package com.ibmap.dental.rest.expenses;
 
 import com.ibmap.dental.application.exception.NotFoundExpensesException;
-import com.ibmap.dental.application.services.IExpensesService;
-import com.ibmap.dental.application.services.impl.ExpensesServiceImpl;
+import com.ibmap.dental.application.services.ExpensesService;
 import com.ibmap.dental.domaine.entities.Expenses;
-import com.ibmap.dental.rest.frontdto.FrontDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,23 +16,23 @@ import java.util.List;
 @RequestMapping("/expenses")
 public class ExpensesRestController {
 
-    private IExpensesService iExpensesService;
+    private ExpensesService expensesService;
     private ExpensesConverter expensesConverter;
     @Autowired
-    public ExpensesRestController(IExpensesService iExpensesService, ExpensesConverter expensesConverter) {
-        this.iExpensesService = iExpensesService;
+    public ExpensesRestController(ExpensesService expensesService, ExpensesConverter expensesConverter) {
+        this.expensesService = expensesService;
         this.expensesConverter = expensesConverter;
     }
 
     @PostMapping("/new")
     public Expenses addNewExpenses(@RequestBody @Valid ExpensesFrontDto expensesFrontDto){
         Expenses expenses= expensesConverter.toEntity(expensesFrontDto);
-        return iExpensesService.addNewExpense(expenses);
+        return expensesService.addNewExpense(expenses);
     }
     @GetMapping("/{id}")
     public ExpensesFrontDto getExpensesById(@PathVariable Long id){
         try {
-            Expenses expenses = iExpensesService.getExpensesById(id);
+            Expenses expenses = expensesService.getExpensesById(id);
             return expensesConverter.toFrontDto(expenses);
         } catch (NotFoundExpensesException e) {
             e.printStackTrace();
@@ -45,7 +43,7 @@ public class ExpensesRestController {
     public ExpensesFrontDto updateExpenses(@RequestBody ExpensesFrontDto expensesFrontDto){
         try {
             Expenses expenses = expensesConverter.toEntity(expensesFrontDto);
-            expenses = iExpensesService.updateExpense(expenses);
+            expenses = expensesService.updateExpense(expenses);
             return expensesConverter.toFrontDto(expenses);
         } catch (NotFoundExpensesException e) {
             e.printStackTrace();
@@ -54,7 +52,7 @@ public class ExpensesRestController {
     }
     @GetMapping("/all")
     public List<ExpensesFrontDto>  getAllExpenses(){
-        List<Expenses> expenses= iExpensesService.getExpensesAll();
+        List<Expenses> expenses= expensesService.getExpensesAll();
         if (expenses == null || expenses.isEmpty()){
             return  new ArrayList<>();
         }

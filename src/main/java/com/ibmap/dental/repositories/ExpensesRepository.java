@@ -16,4 +16,5 @@ public interface ExpensesRepository extends JpaRepository<Expenses,Long> {
     public List<Expenses> getExpensesByAmountDateAfterOrderByAmountDateDesc(LocalDate  date);
     public List<Expenses> getExpensesByAmountDateBefore(LocalDate date);
     public List<Expenses> getExpensesByAmountDate(LocalDate date);
+
 }
