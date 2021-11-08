@@ -53,6 +53,7 @@ public class DentalExceptionResolver extends ResponseEntityExceptionHandler {
      * @return the error resource response.
      */
     @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<ErrorDetails> handle(Exception ex, WebRequest request) {
         logException(ex);
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;

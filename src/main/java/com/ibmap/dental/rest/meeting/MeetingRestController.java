@@ -5,6 +5,7 @@ import com.ibmap.dental.application.services.MeetingService;
 import com.ibmap.dental.domaine.entities.Meeting;
 import com.ibmap.dental.repositories.MeetingRepository;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -32,6 +33,14 @@ public class MeetingRestController {
         this.meetingService = meetingService;
     }
 
+    @Operation(summary = "recover all meetings from the data base")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200", description = "Found the meetings",
+                    content = {@Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = MeetingFrontDto.class))
+                    )}),
+    })
     @GetMapping
     public ResponseEntity<List<MeetingFrontDto>> getAll() {
         List<Meeting> meeting = meetingService.findAll();
@@ -47,12 +56,18 @@ public class MeetingRestController {
                     content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDetails.class))})
     })
     @GetMapping(value = "/{businessKey}")
-    public ResponseEntity<MeetingFrontDto> getByBusinessKey(@PathVariable String businessKey) {
+    public ResponseEntity<MeetingFrontDto> getByBusinessKey(
+            @PathVariable String businessKey) {
         Meeting meeting = meetingService.findByBusinessKey(businessKey);
         MeetingFrontDto frontDto = meetingConverter.toFrontDto(meeting);
         return ResponseEntity.status(HttpStatus.OK).body(frontDto);
     }
 
+    @Operation(summary = "Create a meeting ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "The meeting was created successfully",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = MeetingFrontDto.class))})
+    })
     @PostMapping
     public ResponseEntity<?> create(@RequestBody MeetingFrontDto frontDto) {
         Meeting meeting = meetingConverter.toEntity(frontDto);
@@ -70,14 +85,25 @@ public class MeetingRestController {
         return ResponseEntity.status(HttpStatus.CREATED).headers(responseHeaders).build();
     }
 
+    @Operation(summary = "update a meeting using the businee key")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "205", description = "The meeting was updated/reseted successfully",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = MeetingFrontDto.class))})
+    })
     @PutMapping
     public ResponseEntity<?> update(@RequestBody MeetingFrontDto frontDto) {
-        this.meetingService.update(meetingConverter.toEntity(frontDto));
-        return ResponseEntity.noContent().build();
+        Meeting meeting = this.meetingService.update(meetingConverter.toEntity(frontDto));
+        frontDto = meetingConverter.toFrontDto(meeting);
+        return ResponseEntity.status(HttpStatus.RESET_CONTENT).body(frontDto);
     }
 
+    @Operation(summary = "delete a meeting using its businee key")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "The meeting was deleted successfully",
+                    content = @Content)
+    })
     @DeleteMapping(value = "/{businessKey}")
-    public ResponseEntity<?> delete(@PathVariable(required = true) String businessKey) {
+    public ResponseEntity<?> delete(@PathVariable String businessKey) {
         meetingService.deleteByBusinessKey(businessKey);
         return ResponseEntity.ok().build();
     }
