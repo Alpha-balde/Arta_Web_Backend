@@ -19,6 +19,9 @@ spring:
     devtools:
       restart:
           enabled: true
+springdoc:
+    api-docs:
+        path: '/api-docs'
 logging:
     file:
         name: logs/application-debug.log

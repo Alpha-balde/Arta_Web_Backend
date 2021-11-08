@@ -21,3 +21,9 @@ make env-down => detruit la db
 7. PostgrSql
 ##### Pour ouvrir le fichier Arta.mdj qui se trouve dans le dossier modelisation il faut intaller StarUML.
   
+## Documenting the REST API
+**We use a tool that simplifies the generation and maintenance of API docs 
+based on the OpenAPI 3 specification for Spring Boot 1.x and 2.x applications.**
+1. the OpenAPI descriptions will be available at the path ```http://localhost:8080/api-docs/```
+2. Now we can access the API documentation at ```http://localhost:8080/swagger-ui.html```
+

@@ -5,6 +5,6 @@ import org.springframework.http.HttpStatus;
 
 public class EntityNotFoundException extends DentalException {
     public EntityNotFoundException(String reason) {
-        super(HttpStatus.NOT_FOUND, reason);
+        super(HttpStatus.BAD_REQUEST, reason);
     }
 }

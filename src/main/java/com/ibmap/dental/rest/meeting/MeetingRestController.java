@@ -1,8 +1,14 @@
 package com.ibmap.dental.rest.meeting;
 
+import com.ibmap.dental.application.exception.ErrorDetails;
 import com.ibmap.dental.application.services.MeetingService;
 import com.ibmap.dental.domaine.entities.Meeting;
 import com.ibmap.dental.repositories.MeetingRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -33,6 +39,13 @@ public class MeetingRestController {
         return ResponseEntity.status(HttpStatus.OK).body(frontDtos);
     }
 
+    @Operation(summary = "Get a meeting by its business key")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found the meeting",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = MeetingFrontDto.class))}),
+            @ApiResponse(responseCode = "400", description = "Invalid business key supplied",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDetails.class))})
+    })
     @GetMapping(value = "/{businessKey}")
     public ResponseEntity<MeetingFrontDto> getByBusinessKey(@PathVariable String businessKey) {
         Meeting meeting = meetingService.findByBusinessKey(businessKey);
