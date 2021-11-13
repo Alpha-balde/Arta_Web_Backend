@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 @Component
 public class MeetingConverter implements Converter <Meeting,MeetingFrontDto> {
+
     @Override
     public Meeting toEntity(@NonNull MeetingFrontDto frontDto) {
         return Meeting.builder()
