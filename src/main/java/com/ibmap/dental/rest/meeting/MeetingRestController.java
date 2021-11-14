@@ -33,7 +33,7 @@ public class MeetingRestController {
         this.meetingService = meetingService;
     }
 
-    @Operation(summary = "recover all meetings from the data base")
+    @Operation(summary = "recover all meetings from the database")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200", description = "Found the meetings",

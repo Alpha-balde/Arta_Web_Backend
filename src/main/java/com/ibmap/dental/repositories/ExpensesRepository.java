@@ -8,13 +8,17 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface ExpensesRepository extends JpaRepository<Expenses,Long> {
+public interface ExpensesRepository extends CommonsRepository<Expenses, Long> {
 
-    public List<Expenses> getExpensesByReason(String reason);
-    public Expenses getExpensesById( Long id);
-    public List<Expenses> getExpensesByAmountDateBetween(LocalDate minDate, LocalDate maxDate);
-    public List<Expenses> getExpensesByAmountDateAfterOrderByAmountDateDesc(LocalDate  date);
-    public List<Expenses> getExpensesByAmountDateBefore(LocalDate date);
-    public List<Expenses> getExpensesByAmountDate(LocalDate date);
+    List<Expenses> getExpensesByReason(String reason);
+
+    //Expenses getExpensesById( Long id);
+    List<Expenses> getExpensesByAmountDateBetween(LocalDate minDate, LocalDate maxDate);
+
+    List<Expenses> getExpensesByAmountDateAfterOrderByAmountDateDesc(LocalDate date);
+
+    List<Expenses> getExpensesByAmountDateBefore(LocalDate date);
+
+    List<Expenses> getExpensesByAmountDate(LocalDate date);
 
 }

@@ -1,16 +1,15 @@
 package com.ibmap.dental.application.services.impl;
 
-import com.ibmap.dental.application.exception.NotFoundExpensesException;
-import com.ibmap.dental.application.exception.custom.EntityNotFoundException;
 import com.ibmap.dental.application.services.ExpensesService;
 import com.ibmap.dental.domaine.entities.Expenses;
+import com.ibmap.dental.domaine.entities.Meeting;
+import com.ibmap.dental.repositories.CommonsRepository;
 import com.ibmap.dental.repositories.ExpensesRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -20,12 +19,6 @@ public class ExpensesServiceImpl implements ExpensesService {
 
     public ExpensesServiceImpl(ExpensesRepository expensesRepository) {
         this.expensesRepository = expensesRepository;
-    }
-
-    @Override
-    public Expenses addNewExpense( Expenses expenses) {
-        Expenses ex = expensesRepository.save(expenses);
-        return ex;
     }
 
     @Override
@@ -44,7 +37,7 @@ public class ExpensesServiceImpl implements ExpensesService {
     }
 
     @Override
-    public List<Expenses> getExpensesByDateBefor(LocalDate date) {
+    public List<Expenses> getExpensesByDateBefore(LocalDate date) {
         return expensesRepository.getExpensesByAmountDateBefore(date);
     }
 
@@ -54,34 +47,15 @@ public class ExpensesServiceImpl implements ExpensesService {
     }
 
     @Override
-    public void deleteExpense(Long id) throws NotFoundExpensesException{
-        Optional<Expenses> expensesOptional= Optional.ofNullable(expensesRepository.getExpensesById(id));
-        if(!expensesOptional.isPresent()){
-            throw new NotFoundExpensesException("Expenses doesn't exist");
-        }
-        expensesRepository.deleteById(id);
+    public Expenses update(Expenses expenses) {
+        Expenses persExpenses = this.findByBusinessKey(expenses.getBusinessKey());
+
+        persExpenses.update(expenses);
+        return save(persExpenses);
     }
 
     @Override
-    public Expenses updateExpense(Expenses expenses) throws NotFoundExpensesException {
-        Optional<Expenses> expensesOptional= Optional.ofNullable(expensesRepository.getExpensesById(expenses.getId()));
-        if(!expensesOptional.isPresent()){
-            throw new EntityNotFoundException("Expenses not found"+expenses.toString());
-        }
-        return expensesRepository.save(expenses);
-    }
-
-    @Override
-    public Expenses getExpensesById(Long id) throws NotFoundExpensesException{
-        Optional<Expenses> expensesOptional= Optional.ofNullable(expensesRepository.getExpensesById(id));
-        if(!expensesOptional.isPresent()){
-            throw new NotFoundExpensesException("Expenses doesn't exist");
-        }
-        return expensesRepository.getExpensesById(id);
-    }
-
-    @Override
-    public List<Expenses> getExpensesAll() {
-        return expensesRepository.findAll();
+    public CommonsRepository getRepo() {
+        return expensesRepository;
     }
 }

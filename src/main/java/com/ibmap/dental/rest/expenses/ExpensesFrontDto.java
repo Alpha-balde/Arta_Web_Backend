@@ -15,7 +15,6 @@ import java.time.LocalDate;
 @Setter
 @Builder
 public class ExpensesFrontDto implements FrontDto {
-    private Long id;
     private String businessKey;
     private Instant createdOn;
     @NotBlank

@@ -26,4 +26,14 @@ public class Expenses extends BasicEntity {
     @Column(name = "comment")
     private String comment;
 
+    public Expenses update( Expenses expenses){
+        this.amount= expenses.amount;
+        this.amountDate=expenses.amountDate;
+        this.reason=expenses.reason;
+        this.comment=expenses.comment;
+        return this;
+    }
+
 }
+
+

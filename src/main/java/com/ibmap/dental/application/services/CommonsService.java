@@ -30,6 +30,7 @@ public interface CommonsService<T extends BasicEntity> {
     default void delete(T entity) {
         getRepo().delete(entity);
     }
+    T update(T entity);
 
     CommonsRepository getRepo();
 }
