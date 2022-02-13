@@ -31,6 +31,7 @@ public class Metadata extends BasicEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_type")
+    private  PaymentType paymentType;
 
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Insurance> insurance = new ArrayList<>();

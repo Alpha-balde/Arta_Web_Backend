@@ -53,10 +53,10 @@ public class Member extends BasicEntity {
  @Column(name =  "pictureURL", nullable = true)
  private String pictureURL;
 
- @OneToMany(cascade = CascadeType.PERSIST)
+ @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
  private List<Insurance> insurance = new ArrayList<>();
 
- @OneToMany(cascade = CascadeType.PERSIST)
+ @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
  private List<Contribution> contribution = new ArrayList<>();
 
  @OneToOne(fetch = FetchType.LAZY)
