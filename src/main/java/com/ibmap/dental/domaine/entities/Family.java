@@ -5,7 +5,6 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,4 +32,11 @@ public class Family extends BasicEntity {
 
     @Column(name = "comments", columnDefinition = "TEXT")
     private String comments;
+
+    public Family update(Family fm){
+        this.comments = fm.comments;
+        this.FamilyMember = fm.FamilyMember;
+        this.headPerson  = fm.headPerson;
+        return this;
+    }
 }

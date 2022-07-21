@@ -43,4 +43,16 @@ public class Payment extends BasicEntity {
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Contribution> contribution = new ArrayList<>();
 
+
+    public Payment update(Payment payment){
+        paymentDate=payment.paymentDate;
+        paymentMode=payment.paymentMode;
+        paymentType=payment.paymentType;
+        payment_amount=payment.payment_amount;
+        comment=payment.comment;
+        insurance=payment.insurance;
+        contribution=payment.contribution;
+        return this;
+    }
+
 }

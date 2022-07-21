@@ -3,7 +3,6 @@ package com.ibmap.dental.rest.meeting;
 import com.ibmap.dental.application.exception.ErrorDetails;
 import com.ibmap.dental.application.services.MeetingService;
 import com.ibmap.dental.domaine.entities.Meeting;
-import com.ibmap.dental.repositories.MeetingRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;

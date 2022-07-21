@@ -20,4 +20,12 @@ public class Contribution extends  CommonFees {
     @Column(name = "contribution_month", nullable = false)
     @Enumerated(EnumType.STRING)
     private Month month;
+
+
+
+    public Contribution update(Contribution contribution){
+        super.update(contribution);
+        this.month = contribution.month;
+        return  this;
+    }
 }

@@ -38,4 +38,17 @@ public class Metadata extends BasicEntity {
 
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Contribution> contribution = new ArrayList<>();
+
+
+
+    public Metadata update(Metadata metadata){
+        version = metadata.version;
+        amount = metadata.amount;
+        creationDate = metadata.creationDate;
+        paymentType = metadata.paymentType;
+        insurance = metadata.insurance;
+        contribution = metadata.contribution;
+
+        return this;
+    }
 }

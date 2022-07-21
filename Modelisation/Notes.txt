@@ -1,0 +1,4 @@
+l'update de la table MemberHistory doit etre automatique normalement ?
+
+la methode update ne doit jamais etre utiliser pour inserer un nouvel element, c'est la methode save est doit etre utiliser dans ce cas
+

@@ -31,4 +31,13 @@ abstract class CommonFees extends BasicEntity {
     @Column(name = "year", nullable = false)
     private int year;
 
+    public void update(CommonFees commonFees){
+        this.member = commonFees.member;
+        this.payment = commonFees.payment;
+        this.metadata = commonFees.metadata;
+        this.year = commonFees.year;
+
+
+    }
+
 }

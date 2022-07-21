@@ -2,7 +2,6 @@ package com.ibmap.dental.application.services.impl;
 
 import com.ibmap.dental.application.services.ExpensesService;
 import com.ibmap.dental.domaine.entities.Expenses;
-import com.ibmap.dental.domaine.entities.Meeting;
 import com.ibmap.dental.repositories.CommonsRepository;
 import com.ibmap.dental.repositories.ExpensesRepository;
 import lombok.extern.slf4j.Slf4j;

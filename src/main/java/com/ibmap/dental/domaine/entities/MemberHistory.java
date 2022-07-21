@@ -28,4 +28,13 @@ public class MemberHistory extends BasicEntity {
     private String oldValue;
     @Column(name = "new_value", nullable = false)
     private String newValue;
+
+    public MemberHistory update(MemberHistory memberHistory){
+        this.member = memberHistory.member;
+        this.columnName = memberHistory.columnName;
+        this.modificationDate = memberHistory.modificationDate;
+        this.oldValue = memberHistory.oldValue;
+        this.newValue = memberHistory.newValue;
+        return  this;
+    }
 }
